@@ -1,7 +1,6 @@
 import React from "react";
 import config from "../utilities/config";
 import ShowCandidates from "../components/ShowCandidates";
-
 const evenUsers = (users) => users.id % 2 === 0;
 const oddUsers = (users) => users.id % 2 !== 0;
 
@@ -41,7 +40,13 @@ class FilterCanditates extends React.Component {
   }
 
   render() {
-    return <ShowCandidates />;
+    return (
+      <div>
+        {this.state.canditates.length > 0 && (
+          <ShowCandidates rowData={this.state.canditates} />
+        )}
+      </div>
+    );
   }
 }
 export default FilterCanditates;
