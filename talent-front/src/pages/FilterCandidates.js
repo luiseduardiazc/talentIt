@@ -1,6 +1,7 @@
 import React from "react";
 import config from "../utilities/config";
 import ShowCandidates from "../components/ShowCandidates";
+import { Link } from "react-router-dom";
 const evenUsers = (users) => users.id % 2 === 0;
 const oddUsers = (users) => users.id % 2 !== 0;
 
@@ -9,6 +10,7 @@ class FilterCanditates extends React.Component {
     super(props);
     this.state = {
       canditates: [],
+      selectedCandidates: [],
       error: false,
     };
   }
@@ -39,12 +41,38 @@ class FilterCanditates extends React.Component {
     });
   }
 
+  onSelectionChanged = (params) => {
+    const candidates = params.api.getSelectedRows();
+    this.setState({ selectedCandidates: candidates });
+  };
+
   render() {
     return (
       <div>
         {this.state.canditates.length > 0 && (
-          <ShowCandidates rowData={this.state.canditates} />
+          <ShowCandidates
+            rowData={this.state.canditates}
+            rowSelection="multiple"
+            onSelectionChanged={this.onSelectionChanged}
+          />
         )}
+        <div className="container">
+          {this.state.selectedCandidates.length > 0 && (
+            <Link
+              className="btn btn-secondary"
+              to={{
+                pathname: "/schedule-candidates",
+                state: {
+                  params: {
+                    selectedCandidates: this.state.selectedCandidates,
+                  },
+                },
+              }}
+            >
+              Agendar Candidatos
+            </Link>
+          )}
+        </div>
       </div>
     );
   }

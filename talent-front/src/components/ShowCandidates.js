@@ -53,15 +53,17 @@ class ShowCandidates extends Component {
         minWidth: 100,
         resizable: true,
       },
-      rowSelection: "multiple",
+      rowSelection: "single",
       rowData: [],
-      selectedCandidates: [],
     };
   }
 
   componentDidMount() {
     this.setState({ rowData: this.props.rowData });
-    console.log(this.props.rowData);
+    if (this.props.columnDefs)
+      this.setState({ columnDefs: this.props.columnDefs });
+    if (this.props.rowSelection)
+      this.setState({ rowSelection: this.props.rowSelection });
   }
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -70,11 +72,6 @@ class ShowCandidates extends Component {
 
   onQuickFilterChanged = () => {
     this.gridApi.setQuickFilter(document.getElementById("quickFilter").value);
-  };
-
-  onSelectionChanged = (params) => {
-    const candidates = params.api.getSelectedRows();
-    this.setState({ selectedCandidates: candidates });
   };
 
   render() {
@@ -87,7 +84,7 @@ class ShowCandidates extends Component {
             suppressRowClickSelection={true}
             rowSelection={this.state.rowSelection}
             onGridReady={this.onGridReady}
-            onSelectionChanged={this.onSelectionChanged}
+            onSelectionChanged={this.props.onSelectionChanged}
             rowData={this.state.rowData}
           />
         </div>

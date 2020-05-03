@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import ScheduleInterviews from "../pages/ScheduleInterviews";
 import SearchInterviews from "../pages/SearchInterviews";
 import FilterCandidates from "../pages/FilterCandidates";
+import ScheduleCandidates from "../pages/ScheduleCandidates";
 function App() {
   return (
     <BrowserRouter>
@@ -12,6 +13,11 @@ function App() {
           <Route exact path="/" component={ScheduleInterviews} />
           <Route exact path="/search-interviews" component={SearchInterviews} />
           <Route exact path="/filter-candidates" component={FilterCandidates} />
+          <Route
+            exact
+            path="/schedule-candidates"
+            component={ScheduleCandidates}
+          />
         </Switch>
       </Layout>
     </BrowserRouter>

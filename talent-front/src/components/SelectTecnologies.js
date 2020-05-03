@@ -6,16 +6,18 @@ function SelectTecnologies(props) {
     <div className="container">
       <h2>Agendar Entrevistas</h2>
       <div className="selectTecnologies">
-        <div>
+        <div className="form-group">
           <Select
+            placeholder={<div>Seleccione una Tecnologia</div>}
             key="tecnologies"
             value={props.valueTecnologies}
             onChange={props.handleChangeTecnology}
             options={props.optionsTecnologies}
           />
         </div>
-        <div>
+        <div className="form-group">
           <Select
+            placeholder={<div>Seleccione Items</div>}
             key="itemsTecnologies"
             value={props.valuesItemTecnologies}
             onChange={props.handleChangeItemsTecnologies}
@@ -24,6 +26,7 @@ function SelectTecnologies(props) {
             isMulti
           />
         </div>
+
         {props.valuesItemTecnologies && (
           <Link
             className="btn btn-secondary"
