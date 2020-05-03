@@ -1,7 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import ShowCandidates from "../components/ShowCandidates";
-
+import Spinner from "react-bootstrap/Spinner";
 const columnDefs = [
   {
     headerName: "Name",
@@ -49,11 +49,14 @@ class SearchInterviews extends React.Component {
     this.state = {
       startDate: null,
       rowData: null,
+      showSpinner: false,
+      showCandidates: false,
     };
   }
 
   handleDate = (date) => {
     this.setState({ startDate: date });
+    this.setState({ showSpinner: true });
   };
   render() {
     return (
@@ -69,12 +72,16 @@ class SearchInterviews extends React.Component {
             onChange={this.handleDate}
           />
         </div>
-
+        <div className="form-group">
+          {this.state.showSpinner && <Spinner animation="grow" />}
+        </div>
         <div>
-          <ShowCandidates
-            columnDefs={columnDefs}
-            rowData={this.state.rowData}
-          />
+          {this.state.showCandidates && (
+            <ShowCandidates
+              columnDefs={columnDefs}
+              rowData={this.state.rowData}
+            />
+          )}
         </div>
       </div>
     );
