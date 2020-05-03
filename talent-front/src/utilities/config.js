@@ -24,11 +24,18 @@ const oracleItems = [
   { values: 5, label: "Java Messaging Services" },
 ];
 
+const optionsInterview = [
+  { value: "presencial", label: "Presencial" },
+  { value: "telefonica", label: "Telefonica" },
+  { value: "remota", label: "Remota" },
+];
+
 const config = {
   Options,
   optionsTecnologies,
   microsofItems,
   oracleItems,
+  optionsInterview,
   URL_EXTERNAL_API: "http://jsonplaceholder.typicode.com/users",
 };
 
