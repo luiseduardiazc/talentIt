@@ -1,10 +1,11 @@
 import React from "react";
 import Select from "react-select";
 import { Link } from "react-router-dom";
+
 function SelectTecnologies(props) {
   return (
     <div className="container">
-      <h2>Agendar Entrevistas</h2>
+      <h4>Consultar Tecnologias</h4>
       <div className="selectTecnologies">
         <div className="form-group">
           <Select
