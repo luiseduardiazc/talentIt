@@ -11,12 +11,6 @@ class ScheduleInterviews extends React.Component {
       optionsItemsTecnologies: [],
       showSelect: true,
     };
-
-    this.handleChangeTecnology = this.handleChangeTecnology.bind(this);
-    this.handleChangeItemsTecnologies = this.handleChangeItemsTecnologies.bind(
-      this
-    );
-    this.handleButtonSelect = this.handleButtonSelect.bind(this);
   }
 
   handleChangeTecnology = (selectedOption) => {
