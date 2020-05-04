@@ -37,6 +37,7 @@ const config = {
   oracleItems,
   optionsInterview,
   URL_EXTERNAL_API: "http://jsonplaceholder.typicode.com/users",
+  URL_LOCAL_API: "http://localhost:3001/interviews",
 };
 
 export default config;
