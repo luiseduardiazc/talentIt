@@ -72,7 +72,7 @@ class ScheduleCandidates extends React.Component {
           hour: this.state.startTime.toString(),
           typeInterview: this.state.interviewType.value,
         };
-        const result = await axios.post(config.URL_LOCAL_API, data);
+        await axios.post(config.URL_LOCAL_API, data);
         this.handleCreatedOk();
       }
     } catch (error) {
@@ -84,15 +84,15 @@ class ScheduleCandidates extends React.Component {
   handleCreatedOk = () => {
     let canditates = this.state.canditates;
     const canditateSelected = this.state.canditateSelected;
+    const filterCandidates = (candidate) => {
+      return candidate.id !== canditateSelected[0].id;
+    };
     let updateCanditates = ["null"];
     if (canditates.length > 1) {
-      updateCanditates = canditates.splice(
-        canditates.indexOf(canditateSelected),
-        1
-      );
+      updateCanditates = canditates.filter(filterCandidates);
     }
     this.setState({ canditates: updateCanditates });
-    this.gridApi.setRowData(updateCanditates);
+
     this.setState({ createdOk: "Entrevista Agendada con Exito" });
     this.setState({ canditateSelected: [] });
     this.handleClose();
