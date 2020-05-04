@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
@@ -17,9 +18,11 @@ function ScheduleInterviewModal(props) {
         <Modal.Body>
           <div className="form-group">
             <DatePicker
+              key="Date"
+              minDate={new Date()}
+              dateFormat="dd/MMMM/yyyy"
               className="form-control"
               placeholderText="Seleccione Fecha"
-              key="Date"
               showPopperArrow={false}
               selected={props.startDate}
               onChange={props.handleDate}
@@ -49,6 +52,9 @@ function ScheduleInterviewModal(props) {
               options={props.optionsInterview}
             />
           </div>
+          {props.errorMessage && (
+            <Alert variant="danger">{props.errorMessage}</Alert>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleClose}>
