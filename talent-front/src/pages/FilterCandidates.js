@@ -2,6 +2,8 @@ import React from "react";
 import config from "../utilities/config";
 import ShowCandidates from "../components/ShowCandidates";
 import { Link } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
+
 const evenUsers = (users) => users.id % 2 === 0;
 const oddUsers = (users) => users.id % 2 !== 0;
 
@@ -9,6 +11,7 @@ class FilterCanditates extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showSpinner: true,
       canditates: [],
       selectedCandidates: [],
       error: false,
@@ -18,9 +21,9 @@ class FilterCanditates extends React.Component {
   async componentDidMount() {
     const { numTecnologies } = this.props.location.state.params;
     let usersFiltered = [];
-
     try {
       let users = await this.getUser();
+      this.setState({ showSpinner: false });
       if (numTecnologies.length % 2 === 0) {
         usersFiltered = users.filter(evenUsers);
       } else {
@@ -48,7 +51,8 @@ class FilterCanditates extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        {this.state.showSpinner && <Spinner animation="grow" />}
         {this.state.canditates.length > 0 && (
           <ShowCandidates
             rowData={this.state.canditates}

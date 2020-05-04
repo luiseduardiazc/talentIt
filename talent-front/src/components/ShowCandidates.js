@@ -65,10 +65,6 @@ class ShowCandidates extends Component {
     if (this.props.rowSelection)
       this.setState({ rowSelection: this.props.rowSelection });
   }
-  onGridReady = (params) => {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-  };
 
   onQuickFilterChanged = () => {
     this.gridApi.setQuickFilter(document.getElementById("quickFilter").value);
@@ -83,7 +79,7 @@ class ShowCandidates extends Component {
             defaultColDef={this.state.defaultColDef}
             suppressRowClickSelection={true}
             rowSelection={this.state.rowSelection}
-            onGridReady={this.onGridReady}
+            onGridReady={this.props.onGridReady}
             onSelectionChanged={this.props.onSelectionChanged}
             rowData={this.state.rowData}
           />
